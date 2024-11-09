@@ -8,7 +8,9 @@ export const Feed: FC = () => {
   const dispatch = useDispatch();
   /** TODO: взять переменную из стора */
   const orders = useSelector(selectOrders);
-
+  useEffect(() => {
+    dispatch(fetchFeeds());
+  }, [dispatch]);
   if (!orders.length) {
     return <Preloader />;
   }

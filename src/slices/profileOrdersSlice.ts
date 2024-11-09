@@ -3,8 +3,9 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getOrdersApi } from '@api';
 import { TOrder } from '@utils-types';
 
-export const fetchProfileOrders = createAsyncThunk('profileOrders/', async () =>
-  getOrdersApi()
+export const fetchProfileOrders = createAsyncThunk(
+  'profileOrders/',
+  getOrdersApi
 );
 
 interface ProfileOrdersState {

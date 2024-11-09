@@ -1,11 +1,12 @@
-import { createSelector, createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice, nanoid } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getIngredientsApi } from '@api';
-import { TConstructorIngredient, TIngredient } from '@utils-types';
+import { TIngredient } from '@utils-types';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-export const fetchIngredients = createAsyncThunk('ingredients/', async () =>
-  getIngredientsApi()
+export const fetchIngredients = createAsyncThunk(
+  'ingredients/',
+  getIngredientsApi
 );
 
 interface IngredientsState {
@@ -31,8 +32,13 @@ const ingredientsSlice = createSlice({
     addBun(state, action: PayloadAction<TIngredient>) {
       state.buns = action.payload;
     },
-    addCurrentIngredients(state, action: PayloadAction<TIngredient>) {
-      state.currentIngredients.push(action.payload);
+    addCurrentIngredients: {
+      prepare: (ingredient: TIngredient) => ({
+        payload: { ...ingredient, id: nanoid() }
+      }),
+      reducer: (state, action: PayloadAction<TIngredient & { id: string }>) => {
+        state.currentIngredients.push(action.payload);
+      }
     },
     deleteAllIngredients(state) {
       state.currentIngredients = [];

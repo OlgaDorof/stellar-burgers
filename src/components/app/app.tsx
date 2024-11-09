@@ -14,7 +14,10 @@ import styles from './app.module.css';
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { fetchIngredients } from '../../slices/ingredientsSlice';
+import {
+  fetchIngredients,
+  selectIngredients
+} from '../../slices/ingredientsSlice';
 import { useDispatch } from '../../services/store';
 import { getUser } from '../../slices/registerSlice';
 import { ProtectedRoute } from '../protected-route/protectedRoute';
@@ -30,13 +33,8 @@ export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchIngredients());
-  }, []);
-  useEffect(() => {
     dispatch(getUser());
   }, []);
-  useEffect(() => {
-    dispatch(fetchFeeds());
-  }, [dispatch]);
   return (
     <div className={styles.app}>
       <AppHeader />

@@ -32,9 +32,9 @@ export const fetchLogin = createAsyncThunk(
   }
 );
 
-export const getUser = createAsyncThunk('auth/user', async () => getUserApi());
+export const getUser = createAsyncThunk('auth/user', getUserApi);
 
-export const fetchLogout = createAsyncThunk('logout', async () => logoutApi());
+export const fetchLogout = createAsyncThunk('logout', logoutApi);
 
 export const fetchUpdateUser = createAsyncThunk(
   'update/',
