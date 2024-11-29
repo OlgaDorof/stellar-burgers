@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getOrdersApi } from '@api';
+import { getOrdersApi } from '../utils/burger-api';
 import { TOrder } from '@utils-types';
 
 export const fetchProfileOrders = createAsyncThunk(
@@ -14,7 +14,7 @@ interface ProfileOrdersState {
   error: string | null | undefined;
 }
 
-const initialState: ProfileOrdersState = {
+export const initialState: ProfileOrdersState = {
   ordersProfile: [],
   isLoading: true,
   error: null
