@@ -8,7 +8,7 @@ import {
   updateUserApi,
   getUserApi,
   logoutApi
-} from '@api';
+} from '../utils/burger-api';
 import { TUser } from '@utils-types';
 import { deleteCookie, setCookie } from '../utils/cookie';
 
@@ -48,7 +48,7 @@ interface RegisterState {
   isAuthenticated: boolean;
 }
 
-const initialState: RegisterState = {
+export const initialState: RegisterState = {
   user: {
     name: '',
     email: ''
@@ -120,8 +120,6 @@ const registerSlice = createSlice({
       .addCase(fetchLogout.fulfilled, (state, action) => {
         if (action.payload.success === true) {
           state.user = { name: '', email: '' };
-          localStorage.removeItem('refreshToken');
-          deleteCookie('accessToken');
         }
       });
   }

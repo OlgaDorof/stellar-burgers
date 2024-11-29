@@ -14,14 +14,10 @@ import styles from './app.module.css';
 import { AppHeader, IngredientDetails, Modal, OrderInfo } from '@components';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import {
-  fetchIngredients,
-  selectIngredients
-} from '../../slices/ingredientsSlice';
+import { fetchIngredients } from '../../slices/ingredientsSlice';
 import { useDispatch } from '../../services/store';
 import { getUser } from '../../slices/registerSlice';
 import { ProtectedRoute } from '../protected-route/protectedRoute';
-import { fetchFeeds } from '../../slices/feedsSlice';
 
 export default function App() {
   const navigate = useNavigate();

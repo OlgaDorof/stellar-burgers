@@ -1,6 +1,6 @@
 import { createSelector, createSlice, nanoid } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getIngredientsApi } from '@api';
+import { getIngredientsApi } from '../utils/burger-api';
 import { TIngredient } from '@utils-types';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
@@ -17,7 +17,7 @@ interface IngredientsState {
   currentIngredients: TIngredient[];
 }
 
-const initialState: IngredientsState = {
+export const initialState: IngredientsState = {
   ingredients: [],
   isIngredientsLoading: true,
   error: null,
